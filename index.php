@@ -18,6 +18,34 @@ foreach ($files as $file) { // iterate files
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Dosis:wght@600&family=Lato&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b30c3ea7ee.js" crossorigin="anonymous"></script>
     <style>
+
+        .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+        }
+
+        .loader-dialog{
+            width: 136px;
+            margin: auto;
+            text-align: center;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         body {
             width: 100%;
             padding-top: 60px;
@@ -31,6 +59,7 @@ foreach ($files as $file) { // iterate files
             background: #0059ff;
             padding: 5px 0;
             padding-left: 0px;
+            z-index: 1;
             color: #fff;
         }
 
@@ -216,7 +245,7 @@ foreach ($files as $file) { // iterate files
             font-size: 36px;
         }
 
-        b.semi-transparent {
+        .semi-transparent {
             font-family: Lato;
             font-style: normal;
             font-weight: normal;
@@ -233,6 +262,18 @@ foreach ($files as $file) { // iterate files
             line-height: 29px;
         }
     </style>
+    <script>
+        function getName(){
+            var fu1 = document.getElementById("fileToUpload").value;
+            document.getElementById('filenametitle').innerHTML = fu1.split("\\").pop();
+        }
+
+        function showLoader(){
+
+            document.getElementById('upload-dialog').style.display = 'none';
+            document.getElementById('loader-dialog').style.display = 'block';
+        }
+    </script>
 </head>
 
 <body>
@@ -240,7 +281,7 @@ foreach ($files as $file) { // iterate files
         <div class="fixed-header">
             <div class="container">
                 <nav>
-                    <a class="active" href="#main-body"><i class="fas fa-cloud-upload-alt"></i> PDF.TXT</a>
+                    <a class="active" href="/"><i class="fas fa-cloud-upload-alt"></i> PDF.TXT</a>
                     <a class="scroll" href="#how-to-convert">HOW TO CONVERT?</a>
                 </nav>
             </div>
@@ -255,23 +296,35 @@ foreach ($files as $file) { // iterate files
                     <h1>Converter</h1>
                 </div>
             </section>
-
+            <section id="hidden-loader">
+                <div class="loader-box">
+                    
+                </div>
+                
+            </section>
             <section id="upload-file-part">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
+                <form action="upload.php" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
                     <div class="box">
+                        <div id="upload-dialog">
 
-                        <b class="semi-transparent">Choose File To Upload</b><br>
-                        <label for="fileToUpload" class="custom-file-upload"><i class="far fa-folder-open"></i> Upload File</label>
-                        <div class="upload">
-                            <input type="file" name="fileToUpload" id="fileToUpload">
+                            <b class="semi-transparent" id="filenametitle">Choose File To Upload</b><br>
+                            <label for="fileToUpload" class="custom-file-upload"><i class="far fa-folder-open"></i> Upload File</label>
+                            <div class="upload">
+                                <input type="file" name="fileToUpload" id="fileToUpload" onchange="getName()"/>
+                            </div>
                         </div>
+                        <div class="loader-dialog" id="loader-dialog" style="display: none;">
+                            <div class="loader">
 
+                            </div>
+                            <div class="loader-text">
+                                <p class="semi-transparent">Please wait while we converting...</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="submit">
                         <input type="submit" class="button small-h3" value="Convert To TXT!">
-
-
                     </div>
                 </form>
             </section>
@@ -322,6 +375,7 @@ foreach ($files as $file) { // iterate files
             <div class="container">Copyright &copy; 2021 PDF.TXT</div>
         </div>
     </section>
+    
 </body>
 
 </html>

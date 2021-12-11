@@ -8,10 +8,10 @@
     readfile('download/out.txt');
 
     $files = array_merge(glob('uploads/*'), glob('download/*')); // get all file names
-foreach($files as $file){ // iterate files
-  if(is_file($file)) {
-    unlink($file); // delete file
-  }
-}
+    foreach($files as $file){ // iterate files
+      if(is_file($file)) {
+        unlink($file); // delete file
+      }
+    }
     exit;
 ?>
