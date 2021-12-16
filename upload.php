@@ -9,7 +9,7 @@
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
   // Check the file size to see if exceeded
-  if ($_FILES["fileToUpload"]["size"] > 1000000) {
+  if ($_FILES["fileToUpload"]["size"] > 1000000000) {
     echo "Hey! The file is too large.";
     $uploadFlag = 0;
   }
