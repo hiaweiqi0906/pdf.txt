@@ -1,4 +1,5 @@
 <?php
+    //code block below is to prepare and download the 'out.txt' from 'download' folder
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename='.basename('download/out.txt'));
     header('Expires: 0');
@@ -7,10 +8,13 @@
     header('Content-Length: ' . filesize('download/out.txt'));
     readfile('download/out.txt');
 
-    $files = array_merge(glob('uploads/*'), glob('download/*')); // get all file names
-    foreach($files as $file){ // iterate files
+    //code block below is to delete everything inside 'upload' and 'download' folder
+    $files = array_merge(glob('uploads/*'), glob('download/*')); 
+
+    foreach($files as $file){
       if(is_file($file)) {
-        unlink($file); // delete file
+        //delete the folder using unlink()
+        unlink($file);
       }
     }
     exit;
