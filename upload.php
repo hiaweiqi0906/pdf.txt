@@ -47,7 +47,7 @@
     //check if file was successfully uploaded
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       //execute command cd, compile and run java program with java lib(pdfbox) to convert pdf to txt
-      exec("cd /var/www/testphpandjava/java/src/com/example/helloworld/ && javac -cp \".:pdfbox-app-2.0.24.jar\" HelloWorld.java && java -cp \".:pdfbox-app-2.0.24.jar\" HelloWorld", $output);
+      exec("cd /var/www/testphpandjava/java/src/com/example/helloworld/ && javac -cp \".:pdfbox-app-2.0.24.jar\" PDFConverter.java && java -cp \".:pdfbox-app-2.0.24.jar\" PDFConverter", $output);
       
       //after command line was executed, run 'finish.php' to show the output page for user to download
       include 'finish.php';
