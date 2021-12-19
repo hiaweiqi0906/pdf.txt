@@ -9,7 +9,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import java.io.*;
 /**
  *
- * @author Azeem
+ * @author Hia Wei QI, Liong Man Chun, Tan YiJoe
  */
 public class HelloWorld {
 
